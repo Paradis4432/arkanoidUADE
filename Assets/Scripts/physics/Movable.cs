@@ -15,12 +15,12 @@ namespace physics {
         private Vector2 _initialPos;
 
         protected void CalculateFisics() {
-            Vel.X += Ace.X * Time.deltaTime;
-            Vel.Y += Ace.Y * Time.deltaTime;
-            VelAng.X += AceAng.X * Time.deltaTime;
-            VelAng.Y += AceAng.Y * Time.deltaTime;
-            transform.position += new Vector3(Vel.X, Vel.Y, 0) * Time.deltaTime;
-            transform.Rotate(new Vector3(0, 0, VelAng.X * Time.deltaTime));
+            Vel.X += Ace.X;
+            Vel.Y += Ace.Y;
+            VelAng.X += AceAng.X;
+            VelAng.Y += AceAng.Y;
+            transform.position += new Vector3(Vel.X, Vel.Y, 0);
+            transform.Rotate(new Vector3(0, 0, VelAng.X));
 
             Ace.Reset();
         }
@@ -31,7 +31,8 @@ namespace physics {
             _initialPos = transform.position;
         }
 
-        public void Reset() {
+        public virtual void Reset() {
+            Debug.Log("resetting: " + this);
             Vel = new Velocity();
             Ace = new Aceleration();
             VelAng = new Velocity();

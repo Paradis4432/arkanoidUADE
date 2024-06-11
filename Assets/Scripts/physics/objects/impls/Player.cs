@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace physics.objects.impls {
     public class Player : Rectangle {
         public bool holdBall = true;
 
-        public Ball ball;
+        private Ball ball;
 
         [SerializeField] private float speed = 2;
         [SerializeField] private float limitLeftX = 94.7f;
@@ -17,6 +16,8 @@ namespace physics.objects.impls {
         }
 
         private void Update() {
+            if (ball == null) return; // for testing ball is null
+            
             if (Input.GetKey(KeyCode.A) && transform.position.x > limitLeftX)
                 transform.position += Vector3.left * (Time.deltaTime * speed);
             if (Input.GetKey(KeyCode.D) && transform.position.x < limitRightX)
@@ -38,7 +39,7 @@ namespace physics.objects.impls {
             }
         }
 
-        protected new void Reset() {
+        public override void Reset() {
             holdBall = true;
             base.Reset();
         }

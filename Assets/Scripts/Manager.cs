@@ -3,13 +3,20 @@ using physics.objects;
 using physics.objects.impls;
 using UnityEngine;
 
+[RequireComponent(typeof(BallFactory))]
 public class Manager : MonoBehaviour {
     [SerializeField] private int maxHp = 3;
     [SerializeField] private Player player;
+
+    private BallFactory _ballFactory;
+
     public static int Hp;
 
     private void Start() {
         Hp = maxHp;
+        _ballFactory = GetComponent<BallFactory>();
+
+        player.SetBall(_ballFactory.GetOrCreate());
     }
 
     [ContextMenu("Print objects")]
@@ -41,6 +48,8 @@ public class Manager : MonoBehaviour {
         // spawn only one
 
         player.Reset(); // player reset 
-        player.ball = BallFactory.GetOrCreate();
+        player.SetBall(_ballFactory.GetOrCreate());
+
+        Hp = maxHp;
     }
 }

@@ -1,12 +1,17 @@
+using physics;
 using physics.objects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class BallFactory {
-    public GameObject BallPrefab;
+public class BallFactory : MonoBehaviour{
+    public Ball ballPrefab;
 
-    public static Ball GetOrCreate() {
+    public Ball GetOrCreate() {
         // if found one in object container disabled values -> grab and return that 
         // return new instance of prefab
-        return null;
+        
+        Ball newBall = Instantiate(ballPrefab);
+        newBall.SetBallFactory(this);
+        return newBall;
     }
 }

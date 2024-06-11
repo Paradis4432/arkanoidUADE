@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace physics.objects {
     public class ObjectContainer<TO> where TO : Movable {
@@ -21,8 +20,17 @@ namespace physics.objects {
         public void Disable(TO obj) {
             if (!_values.Contains(obj))
                 throw new Exception("Object not in container");
+            
             _values.Remove(obj);
             _disabledValues.Add(obj);
+        }
+
+        public void Enable(TO obj) {
+            if (!_disabledValues.Contains(obj))
+                throw new Exception("Object is not disabled");
+
+            _disabledValues.Remove(obj);
+            _values.Add(obj);
         }
 
         public void Add(TO obj) {
@@ -36,6 +44,7 @@ namespace physics.objects {
         public void Remove(TO obj) {
             _values.Remove(obj);
         }
+
 
         public HashSet<TO> GetEnabledValues() {
             return _values;

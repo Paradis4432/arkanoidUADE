@@ -6,10 +6,19 @@ namespace physics.objects {
     public class Ball : Movable {
         private static float _distanceHitTresHold; // static to share across balls
 
+        private BallFactory _ballFactory;
         public int initialForceXMin = -2000;
         public int initialForceXMax = 2000;
         public float initialForceY = 300f;
         public float Radius => transform.localScale.x / 2;
+
+        public void SetBallFactory(BallFactory ballFactory) {
+            _ballFactory = ballFactory;
+        }
+        
+        public void SetPosition(Vector3 position) {
+            transform.position = position;
+        }
 
         protected new void Start() {
             base.Start();
@@ -28,7 +37,6 @@ namespace physics.objects {
             if (CollidingWithObjects()) return;
             // check all bricks
             if (CollidingWithObstacles()) return;
-            if (CollidingWithOtherBalls()) return;
         }
 
         private bool CollidingWithWalls() {
@@ -36,6 +44,8 @@ namespace physics.objects {
             {
                 CollisionValues col = CollisionDetector.Between(this, wall);
                 if (!col.hit) continue;
+
+                Debug.Log(col);
 
                 TurnBasedOn(col.distX, col.distY);
 
@@ -51,6 +61,10 @@ namespace physics.objects {
                 CollisionValues col = CollisionDetector.Between(this, obstacle);
                 if (!col.hit) continue;
 
+                Ball b = _ballFactory.GetOrCreate();
+                b.SetPosition(transform.position);
+                b.AddForce(new Vector2(-Vel.X, -Vel.Y));
+                
                 TurnBasedOn(col.distX, col.distY);
 
                 //Destroy(obstacle.gameObject);
@@ -83,20 +97,6 @@ namespace physics.objects {
                         return true;
                     }
                 }
-            }
-
-            return false;
-        }
-
-        private bool CollidingWithOtherBalls() {
-            foreach (Ball ball in ObjectRepository.GetBalls().GetEnabledValues())
-            {
-                CollisionValues col = CollisionDetector.Between(this, ball);
-
-                if (!col.hit) continue;
-
-                // TODO ball to ball hit, make each ball go in the opposite direction
-                return true;
             }
 
             return false;
