@@ -37,8 +37,10 @@ public class Manager : MonoBehaviour {
         ObjectRepository.GetObjects().Reset();
         ObjectRepository.GetObstacles().Reset();
         ObjectRepository.GetWalls().Reset();
-        ObjectRepository.GetBalls().Reset();
+        //ObjectRepository.GetBalls().Reset(); // balls should not reset
+        // spawn only one
 
-        player.Reset(); 
+        player.Reset(); // player reset 
+        player.ball = BallFactory.GetOrCreate();
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using physics.objects;
 using physics.objects.impls;
 using UnityEngine;
@@ -55,13 +54,13 @@ namespace physics {
                     Obstacles.Disable(obstacle);
                     break;
                 case Wall wall:
-                    Walls.Remove(wall);
+                    Walls.Disable(wall);
                     break;
                 case Ball ball:
-                    Balls.Remove(ball);
+                    Balls.Disable(ball);
                     break;
                 default:
-                    Objects.Remove(gameObject);
+                    Objects.Disable(gameObject);
                     break;
             }
         }

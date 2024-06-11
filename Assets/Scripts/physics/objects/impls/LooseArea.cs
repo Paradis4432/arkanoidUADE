@@ -1,17 +1,17 @@
-using UnityEngine;
-
 namespace physics.objects.impls {
     public class LooseArea : Rectangle {
-        public static Manager Manager;
+        public Manager manager;
 
-        public static void HandleBallFalling() {
+        public void HandleBallFalling(Ball ball) {
             // a ball might hit loosing area but it might not mean the player lost
 
             // if life == 1 -> go to lost screen
             // else if no active balls left loose 1 life
             // 
 
-            Debug.Log("LOOSING");
+            //Debug.Log("LOOSING");
+
+            ball.Disable();
 
             if (Manager.Hp == 1)
             {
@@ -25,7 +25,7 @@ namespace physics.objects.impls {
                 Manager.Hp--;
                 // TODO reset
 
-                Manager.Reset();
+                manager.Reset();
             }
         }
     }

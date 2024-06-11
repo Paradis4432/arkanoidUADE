@@ -71,7 +71,7 @@ namespace physics.objects {
                         CollisionValues col = CollisionDetector.Between(this, looseArea);
                         if (!col.hit) continue;
 
-                        LooseArea.HandleBallFalling();
+                        looseArea.HandleBallFalling(this);
                         return true;
                     }
                     case Player player: {

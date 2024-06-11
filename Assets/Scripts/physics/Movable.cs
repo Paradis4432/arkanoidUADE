@@ -39,7 +39,7 @@ namespace physics {
             transform.position = _initialPos;
             gameObject.SetActive(true);
         }
-        
+
         public void AddForce(Vector2 force) {
             Ace.X += force.x / Mass;
             Ace.Y += force.y / Mass;
@@ -51,9 +51,14 @@ namespace physics {
         }
 
         public void Disable() {
-            Debug.Log("disabling " + this);
+            //Debug.Log("disabling " + this);
             ObjectRepository.UnregisterObject(this);
             gameObject.SetActive(false);
+        }
+
+        public void Delete() {
+            ObjectRepository.UnregisterObject(this);
+            Destroy(gameObject);
         }
 
         private void OnDrawGizmosSelected() {
