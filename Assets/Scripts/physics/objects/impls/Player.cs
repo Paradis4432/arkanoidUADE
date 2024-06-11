@@ -19,7 +19,7 @@ namespace physics.objects.impls {
 
             //AddForce(new Vector2(initialForceX, initialForceY));
             if (holdBall)
-                ball.transform.position = transform.position + new Vector3(0, transform.localScale.y + 0.1f, 0);
+                ball.transform.position = transform.position + new Vector3(0, transform.localScale.y + 0.5f, 0);
 
             if (Input.GetKeyDown(KeyCode.Space) && holdBall)
             {

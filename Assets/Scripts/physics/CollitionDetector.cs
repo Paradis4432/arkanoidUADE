@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace physics {
     public abstract class CollisionDetector {
-        public static bool Between(Ball b0, Ball b1) {
-            return false;
+        public static CollisionValues Between(Ball b0, Ball b1) {
+            float dx = b1.PosX - b0.PosX;
+            float dy = b1.PosY - b0.PosY;
+            float d = Mathf.Sqrt(dx * dx + dy * dy);
+            return new CollisionValues(dx, dy, d <= b0.Radius + b1.Radius);
         }
 
         public static CollisionValues Between(Ball ball, Rectangle rectangle) {

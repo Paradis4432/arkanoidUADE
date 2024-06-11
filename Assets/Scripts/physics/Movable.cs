@@ -12,6 +12,8 @@ namespace physics {
         private Aceleration AceAng { get; set; } = new();
         private float Mass { get; set; } = 1;
 
+        private Vector2 _initialPos;
+
         protected void CalculateFisics() {
             Vel.X += Ace.X * Time.deltaTime;
             Vel.Y += Ace.Y * Time.deltaTime;
@@ -39,14 +41,19 @@ namespace physics {
             Ace = new Aceleration();
             VelAng = new Velocity();
             AceAng = new Aceleration();
+            transform.position = _initialPos;
+            gameObject.SetActive(true);
         }
 
-        public void Start() {
+        protected void Start() {
             ObjectRepository.RegisterObject(this);
+            _initialPos = transform.position;
         }
 
-        private void OnDestroy() {
+        public void Disable() {
+            Debug.Log("disabling " + this);
             ObjectRepository.UnregisterObject(this);
+            gameObject.SetActive(false);
         }
 
         private void OnDrawGizmosSelected() {
