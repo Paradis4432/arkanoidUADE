@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace physics.objects.impls {
     public class LooseArea : Rectangle {
+        public static Manager Manager;
+
         public static void HandleBallFalling() {
             // a ball might hit loosing area but it might not mean the player lost
 
@@ -18,12 +20,12 @@ namespace physics.objects.impls {
             }
 
             // check if there are any active balls left
-            if (ObjectRepository.GetBalls().Count == 0)
+            if (ObjectRepository.GetBalls().GetEnabledValues().Count == 0)
             {
                 Manager.Hp--;
                 // TODO reset
-                
-                
+
+                Manager.Reset();
             }
         }
     }

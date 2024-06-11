@@ -7,12 +7,12 @@ using UnityEngine;
 namespace physics {
     public abstract class ObjectRepository {
         // objects used as a more general set
-        private static readonly HashSet<Movable> Objects = new();
+        private static readonly ObjectContainer<Movable> Objects = new();
 
         // type based sets:
-        private static readonly HashSet<Obstacle> Obstacles = new();
-        private static readonly HashSet<Wall> Walls = new();
-        private static readonly HashSet<Ball> Balls = new();
+        private static readonly ObjectContainer<Obstacle> Obstacles = new();
+        private static readonly ObjectContainer<Wall> Walls = new();
+        private static readonly ObjectContainer<Ball> Balls = new();
 
         public static void RegisterObject(Movable gameObject) {
             Debug.Log("Registering object " + gameObject);
@@ -47,12 +47,12 @@ namespace physics {
 
         public static void UnregisterObject(Movable gameObject) {
             if (!IsObjectRegistered(gameObject))
-                Debug.LogError("Object " + gameObject + " not registered");
+                throw new Exception("Object " + gameObject + " not registered");
 
             switch (gameObject)
             {
                 case Obstacle obstacle:
-                    Obstacles.Remove(obstacle);
+                    Obstacles.Disable(obstacle);
                     break;
                 case Wall wall:
                     Walls.Remove(wall);
@@ -66,19 +66,19 @@ namespace physics {
             }
         }
 
-        public static HashSet<Obstacle> GetObstacles() {
+        public static ObjectContainer<Obstacle> GetObstacles() {
             return Obstacles;
         }
 
-        public static HashSet<Wall> GetWalls() {
+        public static ObjectContainer<Wall> GetWalls() {
             return Walls;
         }
 
-        public static HashSet<Ball> GetBalls() {
+        public static ObjectContainer<Ball> GetBalls() {
             return Balls;
         }
 
-        public static HashSet<Movable> GetObjects() {
+        public static ObjectContainer<Movable> GetObjects() {
             return Objects;
         }
     }

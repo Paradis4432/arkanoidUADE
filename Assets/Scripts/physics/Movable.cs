@@ -26,14 +26,9 @@ namespace physics {
         }
 
 
-        public void AddForce(Vector2 force) {
-            Ace.X += force.x / Mass;
-            Ace.Y += force.y / Mass;
-        }
-
-        public void AddTorque(float torque, float force = 1) {
-            float inertia = Mass * force;
-            AceAng.X += torque / inertia;
+        protected void Start() {
+            ObjectRepository.RegisterObject(this);
+            _initialPos = transform.position;
         }
 
         public void Reset() {
@@ -44,10 +39,15 @@ namespace physics {
             transform.position = _initialPos;
             gameObject.SetActive(true);
         }
+        
+        public void AddForce(Vector2 force) {
+            Ace.X += force.x / Mass;
+            Ace.Y += force.y / Mass;
+        }
 
-        protected void Start() {
-            ObjectRepository.RegisterObject(this);
-            _initialPos = transform.position;
+        public void AddTorque(float torque, float force = 1) {
+            float inertia = Mass * force;
+            AceAng.X += torque / inertia;
         }
 
         public void Disable() {

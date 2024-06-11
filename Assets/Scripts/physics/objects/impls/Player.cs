@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace physics.objects.impls {
@@ -31,6 +30,11 @@ namespace physics.objects.impls {
                     )
                 );
             }
+        }
+
+        protected new void Reset() {
+            holdBall = true;
+            base.Reset();
         }
     }
 }

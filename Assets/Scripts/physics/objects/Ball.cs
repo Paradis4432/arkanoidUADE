@@ -32,7 +32,7 @@ namespace physics.objects {
         }
 
         private bool CollidingWithWalls() {
-            foreach (Wall wall in ObjectRepository.GetWalls())
+            foreach (Wall wall in ObjectRepository.GetWalls().GetEnabledValues())
             {
                 CollisionValues col = CollisionDetector.Between(this, wall);
                 if (!col.hit) continue;
@@ -46,7 +46,7 @@ namespace physics.objects {
         }
 
         private bool CollidingWithObstacles() {
-            foreach (Obstacle obstacle in ObjectRepository.GetObstacles())
+            foreach (Obstacle obstacle in ObjectRepository.GetObstacles().GetEnabledValues())
             {
                 CollisionValues col = CollisionDetector.Between(this, obstacle);
                 if (!col.hit) continue;
@@ -63,7 +63,7 @@ namespace physics.objects {
         }
 
         private bool CollidingWithObjects() {
-            foreach (Movable movable in ObjectRepository.GetObjects())
+            foreach (Movable movable in ObjectRepository.GetObjects().GetEnabledValues())
             {
                 switch (movable)
                 {
@@ -89,7 +89,7 @@ namespace physics.objects {
         }
 
         private bool CollidingWithOtherBalls() {
-            foreach (Ball ball in ObjectRepository.GetBalls())
+            foreach (Ball ball in ObjectRepository.GetBalls().GetEnabledValues())
             {
                 CollisionValues col = CollisionDetector.Between(this, ball);
 

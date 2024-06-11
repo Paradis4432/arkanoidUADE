@@ -1,25 +1,47 @@
+using System;
 using System.Collections.Generic;
 
 namespace physics.objects {
-    public class ObjectContainer<O> where O : Movable {
-        public readonly HashSet<O> Values = new();
-        public readonly HashSet<O> DisabledValues = new();
+    public class ObjectContainer<TO> where TO : Movable {
+        private readonly HashSet<TO> _values = new();
+
+        private readonly HashSet<TO> _disabledValues = new();
 
         public void Reset() {
-            foreach (O disabledValue in DisabledValues)
+            foreach (TO disabledValue in _disabledValues)
             {
                 disabledValue.Reset();
-                Values.Add(disabledValue);
+                _values.Add(disabledValue);
             }
 
-            DisabledValues.Clear();
+            _disabledValues.Clear();
         }
 
-        public void Disable(O obj) {
-            if (!Values.Contains(obj))
-                throw new System.Exception("Object not in container");
-            Values.Remove(obj);
-            DisabledValues.Add(obj);
+        public void Disable(TO obj) {
+            if (!_values.Contains(obj))
+                throw new Exception("Object not in container");
+            _values.Remove(obj);
+            _disabledValues.Add(obj);
+        }
+
+        public void Add(TO obj) {
+            _values.Add(obj);
+        }
+
+        public bool Contains(TO obj) {
+            return _values.Contains(obj);
+        }
+
+        public void Remove(TO obj) {
+            _values.Remove(obj);
+        }
+
+        public HashSet<TO> GetEnabledValues() {
+            return _values;
+        }
+
+        public HashSet<TO> GetDisabledValues() {
+            return _disabledValues;
         }
     }
 }
