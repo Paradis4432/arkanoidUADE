@@ -14,7 +14,10 @@ namespace physics.objects {
         private new void Start() {
             if (_distanceHitTresHold != 0f) return;
 
-            _distanceHitTresHold = transform.localScale.x / 3.125f;
+            //_distanceHitTresHold = transform.localScale.x / 3.125f; -> div por valores > 1.02
+            //_distanceHitTresHold = 0.32f; 
+            _distanceHitTresHold = 0.01f;
+            //_distanceHitTresHold = 1.02f;
         }
 
         private void Update() {
@@ -73,6 +76,7 @@ namespace physics.objects {
                     case Player player: {
                         CollisionValues col = CollisionDetector.Between(this, player);
                         if (!col.hit) continue;
+                        //Debug.Log(col);
 
                         TurnBasedOn(col.distX, col.distY);
                         return true;
@@ -86,6 +90,9 @@ namespace physics.objects {
         private void TurnBasedOn(float dx, float dy) {
             // 0.16 for 0.5 scale
             if (Mathf.Abs(dx) > _distanceHitTresHold) Vel.X = -Vel.X;
+
+            Debug.Log(dy);
+            // 0,24 > 0.01
             if (Mathf.Abs(dy) > _distanceHitTresHold) Vel.Y = -Vel.Y;
         }
     }
