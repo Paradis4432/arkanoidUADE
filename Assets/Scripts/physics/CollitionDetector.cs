@@ -33,7 +33,7 @@ namespace physics {
             float dx = cx - ball.PosX;
             float dy = cy - ball.PosY;
             float d = Mathf.Sqrt(dx * dx + dy * dy);
-            Debug.Log("dx: " + dx + " dy: " + dy + " d: " + d);
+            //Debug.Log("dx: " + dx + " dy: " + dy + " d: " + d);
             
             return new CollisionValues(dx, dy, d <= ball.Radius);
         }

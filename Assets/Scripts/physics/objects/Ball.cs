@@ -1,21 +1,20 @@
 using physics.objects.impls;
+using powerups;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace physics.objects {
     [RequireComponent(typeof(SpriteRenderer))]
     public class Ball : Movable {
         private static float _distanceHitTresHold; // static to share across balls
 
-        private BallFactory _ballFactory;
-        public int initialForceXMin = -2000;
-        public int initialForceXMax = 2000;
-        public float initialForceY = 300f;
+        public PowerUpManager powerUpManager;
+        public int initialForceXMin = -1;
+        public int initialForceXMax = 1;
+        public float initialForceY = 2f;
+
         public float Radius => transform.localScale.x / 2;
 
-        public void SetBallFactory(BallFactory ballFactory) {
-            _ballFactory = ballFactory;
-        }
-        
         public void SetPosition(Vector3 position) {
             transform.position = position;
         }
@@ -45,8 +44,6 @@ namespace physics.objects {
                 CollisionValues col = CollisionDetector.Between(this, wall);
                 if (!col.hit) continue;
 
-                Debug.Log(col);
-
                 TurnBasedOn(col.distX, col.distY);
 
                 return true;
@@ -60,14 +57,11 @@ namespace physics.objects {
             {
                 CollisionValues col = CollisionDetector.Between(this, obstacle);
                 if (!col.hit) continue;
-
-                Ball b = _ballFactory.GetOrCreate();
-                b.SetPosition(transform.position);
-                b.AddForce(new Vector2(-Vel.X, -Vel.Y));
                 
+                powerUpManager.AttemptSpawnPowerUp(this);
+
                 TurnBasedOn(col.distX, col.distY);
 
-                //Destroy(obstacle.gameObject);
                 obstacle.Disable();
 
                 return true;

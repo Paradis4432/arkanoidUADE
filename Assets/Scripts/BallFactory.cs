@@ -11,7 +11,6 @@ public class BallFactory : MonoBehaviour{
         // return new instance of prefab
         
         Ball newBall = Instantiate(ballPrefab);
-        newBall.SetBallFactory(this);
         return newBall;
     }
 }

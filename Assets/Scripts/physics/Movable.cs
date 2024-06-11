@@ -32,7 +32,7 @@ namespace physics {
         }
 
         public virtual void Reset() {
-            Debug.Log("resetting: " + this);
+            //Debug.Log("resetting: " + this);
             Vel = new Velocity();
             Ace = new Aceleration();
             VelAng = new Velocity();

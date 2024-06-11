@@ -8,15 +8,15 @@ public class Manager : MonoBehaviour {
     [SerializeField] private int maxHp = 3;
     [SerializeField] private Player player;
 
-    private BallFactory _ballFactory;
+    public BallFactory ballFactory;
 
     public static int Hp;
 
     private void Start() {
         Hp = maxHp;
-        _ballFactory = GetComponent<BallFactory>();
+        ballFactory = GetComponent<BallFactory>();
 
-        player.SetBall(_ballFactory.GetOrCreate());
+        player.SetBall(ballFactory.GetOrCreate());
     }
 
     [ContextMenu("Print objects")]
@@ -48,8 +48,11 @@ public class Manager : MonoBehaviour {
         // spawn only one
 
         player.Reset(); // player reset 
-        player.SetBall(_ballFactory.GetOrCreate());
+        player.SetBall(ballFactory.GetOrCreate());
 
         Hp = maxHp;
     }
+
+
+
 }
