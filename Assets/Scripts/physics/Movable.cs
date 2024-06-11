@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 
 namespace physics {
     public abstract class Movable : MonoBehaviour {
         public float PosX => transform.position.x;
         public float PosY => transform.position.y;
-        
+
         protected float Ang { get; set; } = 0;
         protected Velocity Vel { get; private set; } = new();
         private Aceleration Ace { get; set; } = new();
@@ -42,7 +41,7 @@ namespace physics {
             AceAng = new Aceleration();
         }
 
-        private void Start() {
+        public void Start() {
             ObjectRepository.RegisterObject(this);
         }
 

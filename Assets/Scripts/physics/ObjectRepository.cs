@@ -12,7 +12,6 @@ namespace physics {
         private static readonly HashSet<Wall> Walls = new();
 
         public static void RegisterObject(Movable gameObject) {
-            Debug.Log("Registering object " + gameObject);
             if (IsObjectRegistered(gameObject))
                 Debug.LogError("Object already registered");
 
