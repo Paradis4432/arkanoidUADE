@@ -103,6 +103,8 @@ namespace physics.objects {
                         //Debug.Log(col);
 
                         TurnBasedOn(col.distX, col.distY);
+                        Debug.Log(player.GetAceleration());    
+                        AddForce(player.GetVelocity().X, player.GetVelocity().Y);
                         return true;
                     }
                 }

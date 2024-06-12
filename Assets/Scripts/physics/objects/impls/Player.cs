@@ -16,14 +16,15 @@ namespace physics.objects.impls {
         }
 
         private void Update() {
-            if (Manager.Debugging) return; // for testing ball is null
-
+            Debug.Log(Vel);
+            Debug.Log(Ace);
+            CalculateFisics();
+            
             if (Input.GetKey(KeyCode.A) && transform.position.x > limitLeftX)
-                transform.position += Vector3.left * (Time.deltaTime * speed);
+                AddForce(Vector3.left * (Time.deltaTime * speed));
             if (Input.GetKey(KeyCode.D) && transform.position.x < limitRightX)
-                transform.position += Vector3.right * (Time.deltaTime * speed);
+                AddForce(Vector3.right * (Time.deltaTime * speed));
 
-            //AddForce(new Vector2(initialForceX, initialForceY));
             if (holdBall)
                 ball.transform.position = transform.position + new Vector3(0, transform.localScale.y + 0.4f, 0);
 

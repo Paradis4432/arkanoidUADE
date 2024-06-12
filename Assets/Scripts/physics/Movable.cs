@@ -7,7 +7,7 @@ namespace physics {
 
         protected float Ang { get; set; } = 0;
         protected Velocity Vel { get; private set; } = new();
-        private Aceleration Ace { get; set; } = new();
+        protected Aceleration Ace { get; private set; } = new();
         private Velocity VelAng { get; set; } = new();
         private Aceleration AceAng { get; set; } = new();
         private float Mass { get; set; } = 1;
@@ -48,6 +48,11 @@ namespace physics {
             Ace.X += force.x / Mass;
             Ace.Y += force.y / Mass;
         }
+        
+        public void AddForce(float x, float y) {
+            Ace.X += x / Mass;
+            Ace.Y += y / Mass;
+        }
 
         public void AddTorque(float torque, float force = 1) {
             float inertia = Mass * force;
@@ -62,6 +67,14 @@ namespace physics {
 
         public void Delete() {
             Destroy(gameObject);
+        }
+        
+        public Aceleration GetAceleration() {
+            return Ace;
+        }
+        
+        public Velocity GetVelocity() {
+            return Vel;
         }
 
         private void OnDrawGizmosSelected() {

@@ -51,7 +51,7 @@ public class Manager : MonoBehaviour {
         ObjectRepository.GetObjects().Reset();
         ObjectRepository.GetObstacles().Reset();
         ObjectRepository.GetWalls().Reset();
-        ObjectRepository.GetPowerUps().Reset();
+        ObjectRepository.GetPowerUps().DisableAll();
         //ObjectRepository.GetBalls().Reset(); // balls should not reset
         // spawn only one
 

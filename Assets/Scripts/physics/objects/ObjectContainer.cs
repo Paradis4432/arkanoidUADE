@@ -27,6 +27,16 @@ namespace physics.objects {
             //Debug.Log("_disabledValues: " + _disabledValues.Count);
         }
 
+        public void DisableAll() {
+            foreach (TO movable in _values)
+            {
+                movable.gameObject.SetActive(false);
+                _disabledValues.Add(movable);
+            }
+
+            _values.Clear();
+        }
+
         public void Enable(TO obj) {
             if (!_disabledValues.Contains(obj))
                 throw new Exception("Object is not disabled");
