@@ -33,7 +33,8 @@ public class UpdateManager : MonoBehaviour {
         }
 
         _stopwatch.Stop();
-        Debug.Log($"Time taken to update {bCount} Balls: {_stopwatch.ElapsedMilliseconds} ms"); // 50 balls 85 ms
+        Debug.Log(
+            $"Time taken to update {bCount} Balls: {_stopwatch.ElapsedMilliseconds} ms"); // 50 balls 85 ms for 480 bricks with deep profiling
 
         HashSet<PowerUp> powerUps = ObjectRepository.GetPowerUps().GetEnabledValues();
         HashSet<PowerUp>.Enumerator en = powerUps.GetEnumerator();
