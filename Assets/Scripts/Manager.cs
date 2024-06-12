@@ -6,14 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(BallFactory))]
 public class Manager : MonoBehaviour {
     public static bool Debugging = false;
+    public static int PowerUpsLeft = 50;
+    public static int Hp;
 
     [SerializeField] private int maxHp = 3;
     [SerializeField] private Player player;
 
     public BallFactory ballFactory;
-
-    public static int PowerUpsLeft = 50;
-    public static int Hp;
 
     private void Start() {
         Hp = maxHp;
