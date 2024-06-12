@@ -27,7 +27,7 @@ namespace physics.objects {
         private void Update() {
             if (ObjectRepository.GetObstacles().GetEnabledValues().Count == 0)
             {
-                //player won, stop program
+                //player won, stop programs
                 Debug.Log("Player won");
                 return;
             }
