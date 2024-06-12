@@ -16,8 +16,8 @@ namespace physics.objects.impls {
         }
 
         private void Update() {
-            if (ball == null) return; // for testing ball is null
-            
+            if (Manager.Debugging) return; // for testing ball is null
+
             if (Input.GetKey(KeyCode.A) && transform.position.x > limitLeftX)
                 transform.position += Vector3.left * (Time.deltaTime * speed);
             if (Input.GetKey(KeyCode.D) && transform.position.x < limitRightX)
@@ -30,13 +30,15 @@ namespace physics.objects.impls {
             if (Input.GetKeyDown(KeyCode.Space) && holdBall)
             {
                 holdBall = false;
-                ball.AddForce(
-                    new Vector2(
-                        new Random().Next(ball.initialForceXMin, ball.initialForceXMax),
-                        ball.initialForceY
-                    )
-                );
+                ball.AddForce(GetShootingRandomForce());
             }
+        }
+
+        public Vector2 GetShootingRandomForce() {
+            return new Vector2(
+                new Random().Next(ball.initialForceXMin, ball.initialForceXMax),
+                ball.initialForceY
+            );
         }
 
         public override void Reset() {

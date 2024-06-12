@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace physics.objects {
     public class ObjectContainer<TO> where TO : Movable {
         private readonly HashSet<TO> _values = new();
-
         private readonly HashSet<TO> _disabledValues = new();
 
         public void Reset() {
@@ -20,9 +20,11 @@ namespace physics.objects {
         public void Disable(TO obj) {
             if (!_values.Contains(obj))
                 throw new Exception("Object not in container");
-            
+
+            //Debug.Log("disabling " + obj + " in " + this + " container");
             _values.Remove(obj);
             _disabledValues.Add(obj);
+            //Debug.Log("_disabledValues: " + _disabledValues.Count);
         }
 
         public void Enable(TO obj) {

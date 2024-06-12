@@ -5,6 +5,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(BallFactory))]
 public class Manager : MonoBehaviour {
+    public static bool Debugging = false;
+    
     [SerializeField] private int maxHp = 3;
     [SerializeField] private Player player;
 
@@ -16,7 +18,11 @@ public class Manager : MonoBehaviour {
         Hp = maxHp;
         ballFactory = GetComponent<BallFactory>();
 
-        player.SetBall(ballFactory.GetOrCreate());
+        if (!Debugging)
+            player.SetBall(ballFactory.GetOrCreate());
+
+        //QualitySettings.vSyncCount = 1;
+        //Application.targetFrameRate = 60;
     }
 
     [ContextMenu("Print objects")]
@@ -47,12 +53,15 @@ public class Manager : MonoBehaviour {
         //ObjectRepository.GetBalls().Reset(); // balls should not reset
         // spawn only one
 
+        foreach (PowerUp powerUp in ObjectRepository.GetPowerUps())
+        {
+            powerUp.Delete();
+        }
+        ObjectRepository.GetPowerUps().Clear();
+
         player.Reset(); // player reset 
         player.SetBall(ballFactory.GetOrCreate());
 
         Hp = maxHp;
     }
-
-
-
 }

@@ -1,7 +1,6 @@
 using physics.objects.impls;
 using powerups;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace physics.objects {
     [RequireComponent(typeof(SpriteRenderer))]
@@ -23,7 +22,9 @@ namespace physics.objects {
             base.Start();
             if (_distanceHitTresHold != 0f) return;
 
-            _distanceHitTresHold = transform.localScale.x / 3.125f; // -> div por valores > 1.02
+            //_distanceHitTresHold = transform.localScale.x / 3.125f; // -> div por valores > 1.02
+            _distanceHitTresHold = Radius / 2;
+            //Debug.Log("T:" + _distanceHitTresHold);
             // T puede ser cualquier valor > 1.02 | 0.16 = 0.5 / T => T = 3.125f
         }
 
@@ -57,11 +58,12 @@ namespace physics.objects {
             {
                 CollisionValues col = CollisionDetector.Between(this, obstacle);
                 if (!col.hit) continue;
-                
-                powerUpManager.AttemptSpawnPowerUp(this);
+
 
                 TurnBasedOn(col.distX, col.distY);
 
+                //Debug.Log(col);
+                powerUpManager.AttemptSpawnPowerUp(this);
                 obstacle.Disable();
 
                 return true;

@@ -58,7 +58,6 @@ namespace physics {
         }
 
         public void Delete() {
-            ObjectRepository.UnregisterObject(this);
             Destroy(gameObject);
         }
 

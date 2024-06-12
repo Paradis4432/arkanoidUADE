@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ae5aa95148437bb9b252f8d39ea2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 1258565754275072074, guid: a6b8d1f71441c724686e1ab496b96604, type: 3}
   powerUpChance: 10
-  powerUpsLeft: 3
+  powerUpsLeft: -20
   ballFactory: {fileID: 1959007914234032785}
