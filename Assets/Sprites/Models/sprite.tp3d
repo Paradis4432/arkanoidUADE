@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texturepacker3d_project tp3d_version="1.2.0" version="1.0">
+    <preset_collections/>
+    <filename>sprite.tp3d</filename>
+    <model_files>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/brick1.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/brick2.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/brick3.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/brick4.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/pelota.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/barra 1.fbx</filename>
+        </model_file>
+        <model_file>
+            <filename>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models/col.fbx</filename>
+        </model_file>
+    </model_files>
+    <texture_files/>
+    <custom_textures/>
+    <texture_types>
+        <texture_type>
+            <original_type_name>Albedo</original_type_name>
+            <mapped_type_name>Albedo</mapped_type_name>
+        </texture_type>
+    </texture_types>
+    <output_settings>
+        <output_directory>../Documents/GitHub/arkanoidUADE/Assets/Sprites/Models</output_directory>
+        <image_format>png</image_format>
+        <image_quality>80</image_quality>
+        <max_texture_size>2048</max_texture_size>
+        <size_constraints>POT</size_constraints>
+        <mesh_distance>8</mesh_distance>
+        <embed_media>false</embed_media>
+    </output_settings>
+</texturepacker3d_project>
