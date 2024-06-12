@@ -53,12 +53,6 @@ public class Manager : MonoBehaviour {
         //ObjectRepository.GetBalls().Reset(); // balls should not reset
         // spawn only one
 
-        foreach (PowerUp powerUp in ObjectRepository.GetPowerUps())
-        {
-            powerUp.Delete();
-        }
-        ObjectRepository.GetPowerUps().Clear();
-
         player.Reset(); // player reset 
         player.SetBall(ballFactory.GetOrCreate());
 

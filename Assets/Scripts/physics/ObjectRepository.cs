@@ -14,8 +14,6 @@ namespace physics {
         private static readonly ObjectContainer<Wall> Walls = new();
         private static readonly ObjectContainer<Ball> Balls = new();
 
-        private static readonly HashSet<PowerUp> PowerUps = new();
-
         public static void RegisterObject(Movable gameObject) {
             Debug.Log("Registering object " + gameObject);
             if (IsObjectRegistered(gameObject))
@@ -28,9 +26,6 @@ namespace physics {
                     break;
                 case Wall wall:
                     Walls.Add(wall);
-                    break;
-                case PowerUp powerUp: // first check power ups as they are sub class of ball
-                    PowerUps.Add(powerUp);
                     break;
                 case Ball ball:
                     Balls.Add(ball);
@@ -45,7 +40,6 @@ namespace physics {
             return gameObject switch {
                 Obstacle obstacle => Obstacles.Contains(obstacle),
                 Wall wall => Walls.Contains(wall),
-                PowerUp powerUp => PowerUps.Contains(powerUp),
                 Ball ball => Balls.Contains(ball),
                 _ => Objects.Contains(gameObject)
             };
@@ -62,10 +56,6 @@ namespace physics {
                     break;
                 case Wall wall:
                     Walls.Disable(wall);
-                    break;
-                case PowerUp powerUp:
-                    PowerUps.Remove(powerUp);
-                    powerUp.Delete();
                     break;
                 case Ball ball:
                     Balls.Disable(ball);
@@ -90,10 +80,6 @@ namespace physics {
 
         public static ObjectContainer<Movable> GetObjects() {
             return Objects;
-        }
-
-        public static HashSet<PowerUp> GetPowerUps() {
-            return PowerUps;
         }
     }
 }

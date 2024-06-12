@@ -8,6 +8,7 @@ namespace physics.objects {
         private readonly HashSet<TO> _disabledValues = new();
 
         public void Reset() {
+            _values.Clear();
             foreach (TO disabledValue in _disabledValues)
             {
                 disabledValue.Reset();

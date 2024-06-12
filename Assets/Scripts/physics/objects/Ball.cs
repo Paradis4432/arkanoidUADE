@@ -1,5 +1,4 @@
 using physics.objects.impls;
-using powerups;
 using UnityEngine;
 
 namespace physics.objects {
@@ -7,7 +6,6 @@ namespace physics.objects {
     public class Ball : Movable {
         private static float _distanceHitTresHold; // static to share across balls
 
-        public PowerUpManager powerUpManager;
         public int initialForceXMin = -1;
         public int initialForceXMax = 1;
         public float initialForceY = 2f;
@@ -63,7 +61,7 @@ namespace physics.objects {
                 TurnBasedOn(col.distX, col.distY);
 
                 //Debug.Log(col);
-                powerUpManager.AttemptSpawnPowerUp(this);
+                //powerUpManager.AttemptSpawnPowerUp(this);
                 obstacle.Disable();
 
                 return true;
