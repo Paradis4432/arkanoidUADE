@@ -10,7 +10,7 @@ namespace DefaultNamespace {
             foreach (PowerUp disabledValue in ObjectRepository.GetPowerUps().GetDisabledValues())
             {
                 ObjectRepository.GetPowerUps().Enable(disabledValue);
-                disabledValue.Reset();
+                disabledValue.ResetMovable();
                 return disabledValue;
             }
 

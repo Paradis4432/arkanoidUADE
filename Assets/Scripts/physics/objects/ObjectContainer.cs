@@ -10,7 +10,7 @@ namespace physics.objects {
             //_values.Clear();
             foreach (TO disabledValue in _disabledValues)
             {
-                disabledValue.Reset();
+                disabledValue.ResetMovable();
                 _values.Add(disabledValue);
             }
 

@@ -54,7 +54,7 @@ public class Manager : MonoBehaviour {
         //ObjectRepository.GetBalls().Reset(); // balls should not reset
         // spawn only one
 
-        player.Reset(); // player reset 
+        player.ResetMovable(); // player reset 
         player.SetBall(ballFactory.GetOrCreate());
 
         Hp = maxHp;

@@ -13,7 +13,7 @@ namespace physics.objects.impls {
 
             // FOR TESTING:
             //ball.Disable();
-            ball.Reset();
+            ball.ResetMovable();
             ball.AddForce(1, 1);
             
             if (Manager.Hp == 1)

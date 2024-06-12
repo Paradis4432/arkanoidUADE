@@ -14,7 +14,7 @@ public class BallFactory : MonoBehaviour {
         {
             //Debug.Log("using: " + disabledValue);
             ObjectRepository.GetBalls().Enable(disabledValue);
-            disabledValue.Reset();
+            disabledValue.ResetMovable();
             return disabledValue;
         }
 

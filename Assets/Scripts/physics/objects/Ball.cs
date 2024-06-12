@@ -3,7 +3,7 @@ using physics.objects.impls;
 using UnityEngine;
 
 namespace physics.objects {
-    [RequireComponent(typeof(SpriteRenderer))]
+    //[RequireComponent(typeof(SpriteRenderer))]
     public class Ball : Movable {
         private static float _distanceHitTresHold; // static to share across balls
 

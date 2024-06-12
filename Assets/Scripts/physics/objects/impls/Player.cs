@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using Random = System.Random;
 
@@ -48,15 +49,16 @@ namespace physics.objects.impls {
                 CollisionValues col = CollisionDetector.Between(this, wall);
                 if (!col.hit) continue;
 
+                Debug.Log(col);
                 return true;
             }
 
             return false;
         }
 
-        public override void Reset() {
+        public override void ResetMovable() {
             holdBall = true;
-            base.Reset();
+            base.ResetMovable();
         }
     }
 }

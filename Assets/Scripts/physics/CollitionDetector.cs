@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using physics.objects;
 using UnityEngine;
 
@@ -51,7 +52,6 @@ namespace physics {
             float dx = r1.PosX - r0.PosX;
             float dy = r1.PosY - r0.PosY;
 
-            // Check for collision using axis-aligned bounding box (AABB) method
             bool isColliding = Mathf.Abs(dx) * 2 < r0.Width + r1.Width &&
                                Mathf.Abs(dy) * 2 < r0.Height + r1.Height;
 

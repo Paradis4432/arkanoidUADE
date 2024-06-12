@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 3
-  player: {fileID: 0}
+  player: {fileID: 7150521163042088582, guid: 7f046e88ac44ebb4ba2720eca3d53925, type: 3}
   ballFactory: {fileID: 1959007914234032785}
 --- !u!114 &1959007914234032785
 MonoBehaviour:

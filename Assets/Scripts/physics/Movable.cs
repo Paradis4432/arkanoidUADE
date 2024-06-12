@@ -3,17 +3,16 @@ using UnityEngine;
 namespace physics {
     public abstract class Movable : MonoBehaviour {
         private const int MaxSpeedForObjects = 3;
-
         public float PosX => transform.position.x;
         public float PosY => transform.position.y;
 
         protected float Ang { get; set; } = 0;
         protected Velocity Vel { get; set; } = new();
         protected Aceleration Ace { get; private set; } = new();
+        
         private Velocity VelAng { get; set; } = new();
         private Aceleration AceAng { get; set; } = new();
         private float Mass { get; set; } = 1;
-
         private Vector2 _initialPos;
 
         protected void CalculateFisics() {
@@ -34,8 +33,8 @@ namespace physics {
             _initialPos = transform.position;
         }
 
-        public virtual void Reset() {
-            //Debug.Log("resetting: " + this);
+        public virtual void ResetMovable() {
+            Debug.Log("resetting: " + this);
             Vel = new Velocity();
             Ace = new Aceleration();
             VelAng = new Velocity();
@@ -79,11 +78,6 @@ namespace physics {
 
         public Velocity GetVelocity() {
             return Vel;
-        }
-
-        private void OnDrawGizmosSelected() {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, 0.05f); // Adjust the size as needed
         }
     }
 }
