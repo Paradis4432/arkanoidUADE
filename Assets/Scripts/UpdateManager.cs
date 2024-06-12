@@ -28,9 +28,7 @@ public class UpdateManager : MonoBehaviour {
 
         int bCount = ObjectRepository.GetBalls().GetEnabledValues().Count;
         foreach (Ball enabledValue in ObjectRepository.GetBalls().GetEnabledValues())
-        {
             enabledValue.UpdateMe(); // checks walls, player, loose area and obstacles
-        }
 
         HashSet<PowerUp> powerUps = ObjectRepository.GetPowerUps().GetEnabledValues();
         int puCount = powerUps.Count;
