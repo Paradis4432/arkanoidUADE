@@ -5,15 +5,14 @@ namespace physics.objects.impls {
     public class Player : Rectangle {
         public bool holdBall = true;
 
-        private Ball ball;
-
         [SerializeField] private float speed = 2;
+        private Ball _ball;
 
         public void SetBall(Ball ball) {
-            this.ball = ball;
+            _ball = ball;
         }
 
-        private void Update() {
+        public void UpdateMe() {
             if (CollidingWithWalls())
             {
                 Vel.X = -Vel.X * 1.2f;
@@ -27,19 +26,19 @@ namespace physics.objects.impls {
                 AddForce(Vector3.right * (Time.deltaTime * speed));
 
             if (holdBall)
-                ball.transform.position = transform.position + new Vector3(0, transform.localScale.y + 0.4f, 0);
+                _ball.transform.position = transform.position + new Vector3(0, transform.localScale.y + 0.4f, 0);
 
             if (Input.GetKeyDown(KeyCode.Space) && holdBall)
             {
                 holdBall = false;
-                ball.AddForce(GetShootingRandomForce());
+                _ball.AddForce(GetShootingRandomForce());
             }
         }
 
         public Vector2 GetShootingRandomForce() {
             return new Vector2(
-                new Random().Next(ball.initialForceXMin, ball.initialForceXMax),
-                ball.initialForceY
+                new Random().Next(_ball.initialForceXMin, _ball.initialForceXMax),
+                _ball.initialForceY
             );
         }
 

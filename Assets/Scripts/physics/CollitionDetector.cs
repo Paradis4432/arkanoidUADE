@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using physics.objects;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace physics {
             float d = Mathf.Sqrt(dx * dx + dy * dy);
             return new CollisionValues(dx, dy, d <= b0.Radius + b1.Radius);
         }
+
+
+        private static Dictionary<Rectangle, Vector2> cachePositions = new();
 
         public static CollisionValues Between(Ball ball, Rectangle rectangle) {
             // top left is scale / 2 to the left and width is scale
@@ -34,12 +38,11 @@ namespace physics {
             float dy = cy - ball.PosY;
             float d = Mathf.Sqrt(dx * dx + dy * dy);
             //Debug.Log("dx: " + dx + " dy: " + dy + " d: " + d);
-            
+
             return new CollisionValues(dx, dy, d <= ball.Radius);
         }
 
-        public static CollisionValues Between(Rectangle r0, Rectangle r1)
-        {
+        public static CollisionValues Between(Rectangle r0, Rectangle r1) {
             float dx = r1.PosX - r0.PosX;
             float dy = r1.PosY - r0.PosY;
 

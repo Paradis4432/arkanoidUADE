@@ -3,7 +3,7 @@ using UnityEngine;
 namespace physics {
     public abstract class Movable : MonoBehaviour {
         private static int _maxSpeedForObjects = 3;
-        
+
         public float PosX => transform.position.x;
         public float PosY => transform.position.y;
 
@@ -21,10 +21,10 @@ namespace physics {
             Vel.X = Mathf.Clamp(Vel.X, -_maxSpeedForObjects, _maxSpeedForObjects);
             Vel.Y += Ace.Y;
             Vel.Y = Mathf.Clamp(Vel.Y, -_maxSpeedForObjects, _maxSpeedForObjects);
-            VelAng.X += AceAng.X;
-            VelAng.Y += AceAng.Y;
+            /*VelAng.X += AceAng.X;
+            VelAng.Y += AceAng.Y;*/
             transform.position += new Vector3(Vel.X, Vel.Y, 0);
-            transform.Rotate(new Vector3(0, 0, VelAng.X));
+            /*transform.Rotate(new Vector3(0, 0, VelAng.X));*/
 
             Ace.Reset();
         }
@@ -43,7 +43,7 @@ namespace physics {
             transform.position = _initialPos;
             gameObject.SetActive(true);
         }
-        
+
         public void SetPosition(Vector3 position) {
             transform.position = position;
         }
@@ -52,7 +52,7 @@ namespace physics {
             Ace.X += force.x / Mass;
             Ace.Y += force.y / Mass;
         }
-        
+
         public void AddForce(float x, float y) {
             Ace.X += x / Mass;
             Ace.Y += y / Mass;
@@ -72,11 +72,11 @@ namespace physics {
         public void Delete() {
             Destroy(gameObject);
         }
-        
+
         public Aceleration GetAceleration() {
             return Ace;
         }
-        
+
         public Velocity GetVelocity() {
             return Vel;
         }

@@ -12,7 +12,7 @@ public class Manager : MonoBehaviour {
 
     public BallFactory ballFactory;
 
-    public static int PowerUpsLeft = 3;
+    public static int PowerUpsLeft = 50;
     public static int Hp;
 
     private void Start() {

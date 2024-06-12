@@ -16,7 +16,7 @@ namespace physics {
         private static readonly ObjectContainer<PowerUp> PowerUps = new();
 
         public static void RegisterObject(Movable gameObject) {
-            Debug.Log("Registering object " + gameObject);
+            //Debug.Log("Registering object " + gameObject);
             if (IsObjectRegistered(gameObject))
                 throw new Exception("Object already registered");
 

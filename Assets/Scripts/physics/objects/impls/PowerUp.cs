@@ -4,7 +4,7 @@ namespace physics.objects.impls {
     public class PowerUp : Rectangle {
         public Manager manager;
 
-        private void Update() {
+        public void UpdateMe() {
             CalculateFisics();
 
             if (CollidingWithObjects()) return;
@@ -32,7 +32,6 @@ namespace physics.objects.impls {
                         ObjectRepository.UnregisterObject(this);
                         gameObject.SetActive(false);
 
-                        Debug.Log("spawning new balls");
                         Ball b = manager.ballFactory.GetOrCreate();
 
                         Transform pt = player.transform;

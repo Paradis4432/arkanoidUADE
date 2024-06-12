@@ -24,15 +24,7 @@ namespace physics.objects {
             // T puede ser cualquier valor > 1.02 | 0.16 = 0.5 / T => T = 3.125f
         }
 
-        private void Update() {
-            if (ObjectRepository.GetObstacles().GetEnabledValues().Count == 0)
-            {
-                //player won, stop programs
-                Debug.Log("Player won");
-                return;
-            }
-
-
+        public void UpdateMe() {
             CalculateFisics();
 
             // walls first, less objects and more likely to hit first
@@ -61,7 +53,12 @@ namespace physics.objects {
             int r = Random.Range(0, 100);
             foreach (Obstacle obstacle in ObjectRepository.GetObstacles().GetEnabledValues())
             {
-                CollisionValues col = CollisionDetector.Between(this, obstacle);
+                CollisionValues col = CollisionDetector.Between(this, obstacle); // 72% of total
+                // 22% getX 
+                // 22% getY
+                // 5% rect.getWidth and ball.getRad
+                // CollidingWithObstacles -> 28 ish ms
+
                 if (!col.hit) continue;
 
 
@@ -75,6 +72,7 @@ namespace physics.objects {
                     PowerUp powerUp = powerUpFactory.GetOrCreate();
                     powerUp.SetPosition(transform.position);
                     powerUp.AddForce(new Vector2(0, -1));
+                    Manager.PowerUpsLeft--;
                 }
 
                 obstacle.Disable();
@@ -103,7 +101,6 @@ namespace physics.objects {
                         //Debug.Log(col);
 
                         TurnBasedOn(col.distX, col.distY);
-                        Debug.Log(player.GetAceleration());    
                         AddForce(player.GetVelocity().X, player.GetVelocity().Y);
                         return true;
                     }

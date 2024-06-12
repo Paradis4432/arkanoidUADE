@@ -11,8 +11,11 @@ namespace physics.objects.impls {
 
             //Debug.Log("LOOSING");
 
-            ball.Disable();
-
+            // FOR TESTING:
+            //ball.Disable();
+            ball.Reset();
+            ball.AddForce(1, 1);
+            
             if (Manager.Hp == 1)
             {
                 // go to lost screen
