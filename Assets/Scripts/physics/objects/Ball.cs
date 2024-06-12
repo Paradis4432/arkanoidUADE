@@ -51,9 +51,11 @@ namespace physics.objects {
 
         private bool CollidingWithObstacles() {
             int r = Random.Range(0, 100);
+            Vector2 position = transform.position;
+            float rad = Radius;
             foreach (Obstacle obstacle in ObjectRepository.GetObstacles().GetEnabledValues())
             {
-                CollisionValues col = CollisionDetector.Between(this, obstacle); // 72% of total
+                CollisionValues col = CollisionDetector.Between(position, rad, obstacle); // 72% of total
                 // 22% getX 
                 // 22% getY
                 // 5% rect.getWidth and ball.getRad

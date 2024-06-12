@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using DefaultNamespace;
 using physics.objects;
 using UnityEngine;
 
@@ -12,34 +12,40 @@ namespace physics {
         }
 
 
-        private static Dictionary<Rectangle, Vector2> cachePositions = new();
-
         public static CollisionValues Between(Ball ball, Rectangle rectangle) {
+            return Between(ball.PosX, ball.PosY, ball.Radius, rectangle);
+        }
+
+        public static CollisionValues Between(Vector2 bPos, float r, Rectangle rectangle) {
+            return Between(bPos.x, bPos.y, r, rectangle);
+        }
+
+        public static CollisionValues Between(float bpx, float bpy, float r, Rectangle rectangle) {
+            RectangleData rec = CacheManager.GetOrSave(rectangle);
+            return Between(bpx, bpy, r, rec.w, rec.h, rec.px, rec.py);
+            //return Between(bpx, bpy, r, rectangle.Width / 2, rectangle.Height / 2, rectangle.PosX, rectangle.PosY);
+        }
+
+        public static CollisionValues Between(float bpx, float bpy, float r, float w, float h, float rx, float ry) {
             // top left is scale / 2 to the left and width is scale
             float cx;
             float cy;
 
-            float w = rectangle.Width / 2;
-            float h = rectangle.Height / 2;
+            if (bpx > rx + w) cx = rx + w;
+            else if (bpx < rx - w) cx = rx - w;
+            else cx = bpx;
 
-            float rx = rectangle.PosX;
-            float ry = rectangle.PosY;
-
-            if (ball.PosX > rx + w) cx = rx + w;
-            else if (ball.PosX < rx - w) cx = rx - w;
-            else cx = ball.PosX;
-
-            if (ball.PosY > ry + h) cy = ry + h;
-            else if (ball.PosY < ry - h) cy = ry - h;
-            else cy = ball.PosY;
+            if (bpy > ry + h) cy = ry + h;
+            else if (bpy < ry - h) cy = ry - h;
+            else cy = bpy;
 
 
-            float dx = cx - ball.PosX;
-            float dy = cy - ball.PosY;
+            float dx = cx - bpx;
+            float dy = cy - bpy;
             float d = Mathf.Sqrt(dx * dx + dy * dy);
             //Debug.Log("dx: " + dx + " dy: " + dy + " d: " + d);
 
-            return new CollisionValues(dx, dy, d <= ball.Radius);
+            return new CollisionValues(dx, dy, d <= r);
         }
 
         public static CollisionValues Between(Rectangle r0, Rectangle r1) {
