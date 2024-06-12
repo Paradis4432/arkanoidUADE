@@ -6,12 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(BallFactory))]
 public class Manager : MonoBehaviour {
     public static bool Debugging = false;
-    
+
     [SerializeField] private int maxHp = 3;
     [SerializeField] private Player player;
 
     public BallFactory ballFactory;
 
+    public static int PowerUpsLeft = 3;
     public static int Hp;
 
     private void Start() {
@@ -50,6 +51,7 @@ public class Manager : MonoBehaviour {
         ObjectRepository.GetObjects().Reset();
         ObjectRepository.GetObstacles().Reset();
         ObjectRepository.GetWalls().Reset();
+        ObjectRepository.GetPowerUps().Reset();
         //ObjectRepository.GetBalls().Reset(); // balls should not reset
         // spawn only one
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace physics.objects {
     public class ObjectContainer<TO> where TO : Movable {
@@ -8,7 +7,7 @@ namespace physics.objects {
         private readonly HashSet<TO> _disabledValues = new();
 
         public void Reset() {
-            _values.Clear();
+            //_values.Clear();
             foreach (TO disabledValue in _disabledValues)
             {
                 disabledValue.Reset();
@@ -48,6 +47,13 @@ namespace physics.objects {
             _values.Remove(obj);
         }
 
+        public void Clear() {
+            foreach (TO movable in _values) movable.Delete();
+            foreach (TO movable in _disabledValues) movable.Delete();
+
+            _values.Clear();
+            _disabledValues.Clear();
+        }
 
         public HashSet<TO> GetEnabledValues() {
             return _values;

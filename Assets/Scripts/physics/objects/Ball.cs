@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using physics.objects.impls;
 using UnityEngine;
 
@@ -11,10 +12,7 @@ namespace physics.objects {
         public float initialForceY = 2f;
 
         public float Radius => transform.localScale.x / 2;
-
-        public void SetPosition(Vector3 position) {
-            transform.position = position;
-        }
+        public PowerUpFactory powerUpFactory;
 
         protected new void Start() {
             base.Start();
@@ -27,6 +25,14 @@ namespace physics.objects {
         }
 
         private void Update() {
+            if (ObjectRepository.GetObstacles().GetEnabledValues().Count == 0)
+            {
+                //player won, stop program
+                Debug.Log("Player won");
+                return;
+            }
+
+
             CalculateFisics();
 
             // walls first, less objects and more likely to hit first
@@ -52,6 +58,7 @@ namespace physics.objects {
         }
 
         private bool CollidingWithObstacles() {
+            int r = Random.Range(0, 100);
             foreach (Obstacle obstacle in ObjectRepository.GetObstacles().GetEnabledValues())
             {
                 CollisionValues col = CollisionDetector.Between(this, obstacle);
@@ -62,6 +69,14 @@ namespace physics.objects {
 
                 //Debug.Log(col);
                 //powerUpManager.AttemptSpawnPowerUp(this);
+
+                if (Manager.PowerUpsLeft > 0 && r < 10)
+                {
+                    PowerUp powerUp = powerUpFactory.GetOrCreate();
+                    powerUp.SetPosition(transform.position);
+                    powerUp.AddForce(new Vector2(0, -1));
+                }
+
                 obstacle.Disable();
 
                 return true;

@@ -25,7 +25,6 @@ namespace physics {
             Ace.Reset();
         }
 
-
         protected void Start() {
             ObjectRepository.RegisterObject(this);
             _initialPos = transform.position;
@@ -39,6 +38,10 @@ namespace physics {
             AceAng = new Aceleration();
             transform.position = _initialPos;
             gameObject.SetActive(true);
+        }
+        
+        public void SetPosition(Vector3 position) {
+            transform.position = position;
         }
 
         public void AddForce(Vector2 force) {

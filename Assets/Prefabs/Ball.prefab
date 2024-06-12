@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b930e2d4ae4e00a0af179479f1659e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpManager: {fileID: -5929817967809698780, guid: 968962240f07e1a469ac1b7b81264d12, type: 3}
   initialForceXMin: -1
   initialForceXMax: 1
   initialForceY: 2
+  powerUpFactory: {fileID: 8455457138678135741, guid: 968962240f07e1a469ac1b7b81264d12, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1959007914234032786}
   - component: {fileID: 1959007914234032787}
   - component: {fileID: 1959007914234032785}
-  - component: {fileID: -5929817967809698780}
+  - component: {fileID: 8455457138678135741}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 1659111816570226438, guid: fb377820e6da93d4e907f44578440aa1, type: 3}
---- !u!114 &-5929817967809698780
+--- !u!114 &8455457138678135741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,10 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959007914234032788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16ae5aa95148437bb9b252f8d39ea2d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 74b7d5dc22f34eec9de0f5eac695c7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 1258565754275072074, guid: a6b8d1f71441c724686e1ab496b96604, type: 3}
-  powerUpChance: 10
-  powerUpsLeft: -20
-  ballFactory: {fileID: 1959007914234032785}
+  powerUpPrefab: {fileID: 6677636817728057852, guid: a6b8d1f71441c724686e1ab496b96604, type: 3}

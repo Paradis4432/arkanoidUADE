@@ -13,6 +13,7 @@ namespace physics {
         private static readonly ObjectContainer<Obstacle> Obstacles = new();
         private static readonly ObjectContainer<Wall> Walls = new();
         private static readonly ObjectContainer<Ball> Balls = new();
+        private static readonly ObjectContainer<PowerUp> PowerUps = new();
 
         public static void RegisterObject(Movable gameObject) {
             Debug.Log("Registering object " + gameObject);
@@ -30,6 +31,9 @@ namespace physics {
                 case Ball ball:
                     Balls.Add(ball);
                     break;
+                case PowerUp powerUp:
+                    PowerUps.Add(powerUp);
+                    break;
                 default:
                     Objects.Add(gameObject);
                     break;
@@ -41,6 +45,7 @@ namespace physics {
                 Obstacle obstacle => Obstacles.Contains(obstacle),
                 Wall wall => Walls.Contains(wall),
                 Ball ball => Balls.Contains(ball),
+                PowerUp powerUp => PowerUps.Contains(powerUp),
                 _ => Objects.Contains(gameObject)
             };
         }
@@ -59,6 +64,9 @@ namespace physics {
                     break;
                 case Ball ball:
                     Balls.Disable(ball);
+                    break;
+                case PowerUp powerUp:
+                    PowerUps.Disable(powerUp);
                     break;
                 default:
                     Objects.Disable(gameObject);
@@ -80,6 +88,10 @@ namespace physics {
 
         public static ObjectContainer<Movable> GetObjects() {
             return Objects;
+        }
+
+        public static ObjectContainer<PowerUp> GetPowerUps() {
+            return PowerUps;
         }
     }
 }
