@@ -8,21 +8,22 @@ namespace physics.objects.impls {
         private Ball ball;
 
         [SerializeField] private float speed = 2;
-        [SerializeField] private float limitLeftX = 94.7f;
-        [SerializeField] private float limitRightX = 109.72f;
 
         public void SetBall(Ball ball) {
             this.ball = ball;
         }
 
         private void Update() {
-            Debug.Log(Vel);
-            Debug.Log(Ace);
+            if (CollidingWithWalls())
+            {
+                Vel.X = -Vel.X * 1.2f;
+            }
+
             CalculateFisics();
-            
-            if (Input.GetKey(KeyCode.A) && transform.position.x > limitLeftX)
+
+            if (Input.GetKey(KeyCode.A))
                 AddForce(Vector3.left * (Time.deltaTime * speed));
-            if (Input.GetKey(KeyCode.D) && transform.position.x < limitRightX)
+            if (Input.GetKey(KeyCode.D))
                 AddForce(Vector3.right * (Time.deltaTime * speed));
 
             if (holdBall)
@@ -40,6 +41,18 @@ namespace physics.objects.impls {
                 new Random().Next(ball.initialForceXMin, ball.initialForceXMax),
                 ball.initialForceY
             );
+        }
+
+        private bool CollidingWithWalls() {
+            foreach (Wall wall in ObjectRepository.GetWalls().GetEnabledValues())
+            {
+                CollisionValues col = CollisionDetector.Between(this, wall);
+                if (!col.hit) continue;
+
+                return true;
+            }
+
+            return false;
         }
 
         public override void Reset() {

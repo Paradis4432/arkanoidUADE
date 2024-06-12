@@ -2,11 +2,13 @@ using UnityEngine;
 
 namespace physics {
     public abstract class Movable : MonoBehaviour {
+        private static int _maxSpeedForObjects = 3;
+        
         public float PosX => transform.position.x;
         public float PosY => transform.position.y;
 
         protected float Ang { get; set; } = 0;
-        protected Velocity Vel { get; private set; } = new();
+        protected Velocity Vel { get; set; } = new();
         protected Aceleration Ace { get; private set; } = new();
         private Velocity VelAng { get; set; } = new();
         private Aceleration AceAng { get; set; } = new();
@@ -16,7 +18,9 @@ namespace physics {
 
         protected void CalculateFisics() {
             Vel.X += Ace.X;
+            Vel.X = Mathf.Clamp(Vel.X, -_maxSpeedForObjects, _maxSpeedForObjects);
             Vel.Y += Ace.Y;
+            Vel.Y = Mathf.Clamp(Vel.Y, -_maxSpeedForObjects, _maxSpeedForObjects);
             VelAng.X += AceAng.X;
             VelAng.Y += AceAng.Y;
             transform.position += new Vector3(Vel.X, Vel.Y, 0);
