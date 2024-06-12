@@ -70,7 +70,7 @@ namespace physics.objects {
                 //Debug.Log(col);
                 //powerUpManager.AttemptSpawnPowerUp(this);
 
-                if (Manager.PowerUpsLeft > 0 && r < 10)
+                if (Manager.PowerUpsLeft > 0 && r < 1000)
                 {
                     PowerUp powerUp = powerUpFactory.GetOrCreate();
                     powerUp.SetPosition(transform.position);
