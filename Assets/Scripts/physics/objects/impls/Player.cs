@@ -18,7 +18,7 @@ namespace physics.objects.impls {
                 Vel.X = -Vel.X * 1.2f;
             }
 
-            CalculateFisics();
+            CalculateFisics(); // calculate after checking walls
 
             if (Input.GetKey(KeyCode.A))
                 AddForce(Vector3.left * (Time.deltaTime * speed));
